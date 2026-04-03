@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechHub - Premium Tech Gadgets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav a:hover {
+            opacity: 0.8;
+        }
+
+        .cart-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid white;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .cart-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: white;
+            color: #667eea;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .category-icon {
+            font-size: 48px;
+            margin-bottom: 1rem;
+        }
+
+        .category-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 250px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            position: relative;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff6b6b;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .product-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .product-rating {
+            color: #ffc107;
+            margin-bottom: 0.5rem;
+            font-size: 14px;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .add-to-cart {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: #764ba2;
+        }
+
+        .features {
+            background: white;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            font-size: 18px;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #555;
+            padding-top: 1.5rem;
+            font-size: 14px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">⚡ TechHub</div>
+            <ul class="nav">
+                <li><a href="#products">Shop</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="cart-btn">🛒 Cart (0)</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Welcome to TechHub</h1>
+        <p>Discover the latest gadgets and electronics at unbeatable prices</p>
+        <button class="cta-button">Start Shopping</button>
+    </section>
+
+    <div class="container">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="categories">
+            <div class="category-card">
+                <div class="category-icon">📱</div>
+                <div class="category-name">Smartphones</div>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">💻</div>
+                <div class="category-name">Laptops</div>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🎧</div>
+                <div class="category-name">Audio</div>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">⌚</div>
+                <div class="category-name">Wearables</div>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="products">Featured Products</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    📱
+                    <span class="badge">Sale</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">iPhone 15 Pro</div>
+                    <div class="product-description">Latest iOS, A17 chip, 120Hz display</div>
+                    <div class="product-rating">⭐⭐⭐⭐⭐ (428 reviews)</div>
+                    <div class="product-footer">
+                        <span class="product-price">$999</span>
+                        <button class="add-to-cart">Add Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">💻</div>
+                <div class="product-info">
+                    <div class="product-name">MacBook Pro M3</div>
+                    <div class="product-description">16GB RAM, 512GB SSD, 14" display</div>
+                    <div class="product-rating">⭐⭐⭐⭐⭐ (312 reviews)</div>
+                    <div class="product-footer">
+                        <span class="product-price">$1,999</span>
+                        <button class="add-to-cart">Add Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">🎧</div>
+                <div class="product-info">
+                    <div class="product-name">Sony WH-1000XM5</div>
+                    <div class="product-description">Active noise cancelling, 30hr battery</div>
+                    <div class="product-rating">⭐⭐⭐⭐⭐ (856 reviews)</div>
+                    <div class="product-footer">
+                        <span class="product-price">$349</span>
+                        <button class="add-to-cart">Add Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    ⌚
+                    <span class="badge">New</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Apple Watch Ultra</div>
+                    <div class="product-description">Fitness tracking, Retina display</div>
+                    <div class="product-rating">⭐⭐⭐⭐⭐ (645 reviews)</div>
+                    <div class="product-footer">
+                        <span class="product-price">$799</span>
+                        <button class="add-to-cart">Add Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">🎮</div>
+                <div class="product-info">
+                    <div class="product-name">PlayStation 5</div>
+                    <div class="product-description">4K gaming, 825GB storage, DualSense</div>
+                    <div class="product-rating">⭐⭐⭐⭐⭐ (1,234 reviews)</div>
+                    <div class="product-footer">
+                        <span class="product-price">$499</span>
+                        <button class="add-to-cart">Add Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">📷</div>
+                <div class="product-info">
+                    <div class="product-name">GoPro Hero 12</div>
+                    <div class="product-description">Waterproof, 5.3K video, stabilization</div>
+                    <div class="product-rating">⭐⭐⭐⭐⭐ (567 reviews)</div>
+                    <div class="product-footer">
+                        <span class="product-price">$349</span>
+                        <button class="add-to-cart">Add Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="features">Why Choose TechHub?</h2>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">✅</div>
+                <h3>100% Authentic</h3>
+                <p>All products are genuine and come with manufacturer warranty</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🚚</div>
+                <h3>Free Shipping</h3>
+                <p>Free delivery on orders over $50 to your doorstep</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💰</div>
+                <h3>Best Prices</h3>
+                <p>Price match guarantee - we beat any competitor's price</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📞</div>
+                <h3>24/7 Support</h3>
+                <p>Round-the-clock customer service for all your queries</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <a href="#">Our Story</a>
+                <a href="#">Careers</a>
+                <a href="#">Press</a>
+                <a href="#">Blog</a>
+            </div>
+            <div class="footer-section">
+                <h4>Customer Service</h4>
+                <a href="#">Contact Us</a>
+                <a href="#">Shipping Info</a>
+                <a href="#">Returns</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+                <a href="#">Disclaimer</a>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TechHub Inc. All rights reserved. Made with ❤️ for tech lovers</p>
+        </div>
+    </footer>
+</body>
+</html>
